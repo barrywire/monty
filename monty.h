@@ -1,6 +1,11 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -32,5 +37,25 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct arguments - Values to be accessed by various functions
+ * @argv: Name of the executable
+ * @counter: counts number of lines
+ * @line: input line
+ * @stack: doubly linked list
+ * @file: file
+ * @order: FIFO or LIFO
+ */
+typedef struct arguments
+{
+	char **argv;
+	ssize_t counter;
+	char *line;
+	stack_t *stack;
+	FILE *file;
+	int order;
+} args_t;
+
+extern args_t args;
 
 #endif
